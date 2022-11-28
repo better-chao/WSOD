@@ -1,0 +1,60 @@
+MODEL:
+  TYPE: generalized_rcnn
+  CONV_BODY: vgg16.dilated_conv5_body
+  NUM_CLASSES: 20
+  WITH_FRCNN: True
+NUM_GPUS: 2
+VGG:
+  IMAGENET_PRETRAINED_WEIGHTS: 'data/pretrained_model/vgg16_caffe.pth'
+SUP:
+  SEMI: False
+CDBLOCK:
+  SWITCH: True
+SOLVER:
+  WEIGHT_DECAY: 0.0005
+  LR_POLICY: steps_with_decay
+  BASE_LR: 0.001
+  GAMMA: 0.1
+  # 1x schedule (note TRAIN.IMS_PER_BATCH: 1)
+  MAX_ITER: 150000
+  STEPS: [0, 120000]
+FAST_RCNN:
+  ROI_BOX_HEAD: vgg16.roi_2mlp_head
+  ROI_XFORM_METHOD: RoIPoolF
+  ROI_XFORM_RESOLUTION: 7
+  MLP_HEAD_DIM: 4096
+TRAIN:
+  TOP_TO_DOWN: True
+  STATIC_LOSS: False
+  LABEL_UPDATE: False
+  DEBUG: False
+  REWEIGHT_EPOCH: 4
+  UPDATE_RATE: 1.0
+  EXP_TEMP: 8.0
+  WSOD_REWEIGHT: False
+
+  NORMAL: False
+
+  THRESHOLD: 0.8
+  DYNAMIC_TYPE: "sigmoid"
+  EXPAND_GT: False
+  UPDATE_PER_TIME: 1
+  SCALES: (480, 576, 688, 864, 1000, 1200)
+  MAX_SIZE: 2000
+  IMS_PER_BATCH: 1
+  BATCH_SIZE_PER_IM: 4096
+  PROPOSAL_FILES: ('data/selective_search_data/voc_2007_trainval.pkl',)
+TEST:
+  MODEL: "fast_rcnn"
+  SCALE: 480
+  MAX_SIZE: 2000
+  NMS: 0.3
+  PROPOSAL_FILES: ('data/selective_search_data',)
+  BBOX_AUG:
+    ENABLED: True
+    H_FLIP: True
+    SCALES: (576, 688, 864, 1000, 1200)
+    SCALE_H_FLIP: True
+    SCORE_HEUR: 'AVG'
+    COORD_HEUR: 'AVG'
+RNG_SEED: 4
