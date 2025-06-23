@@ -61,4 +61,7 @@ sh test_fast.sh
 
 ## Checkpoints
 
-
+Weakly supervised stage weights VOC2007 [model_step139999.pth](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link).
+Weakly supervised stage weights VOC2012 [model_step299999.pth](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link).
+Strongly supervised stage weights VOC2007 [model_step18749.pth](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link).
+Strongly supervised stage weights VOC2012 [model_step37499.pth](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link).
