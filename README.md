@@ -9,7 +9,7 @@ detection</h1>
 
 ## Notes
 
-This is a Pytorch implementation of the **Refining and reweighting pseudo labels for weakly supervised object** [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0925231224001589). There have been multiple implementations of this article on GitHub, but most of them are based on TensorFlow with poor readability. The few PyTorch-based implementations have extremely brief documentation, making it difficult to start training and reproduce the metrics in the paper. This project provides a PyTorch implementation with clear steps, facilitating everyone to reproduce the results.
+This is a Office implementation of the **Refining and reweighting pseudo labels for weakly supervised object** [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0925231224001589).
 
 ## Get Started
 
@@ -18,21 +18,16 @@ This is a Pytorch implementation of the **Refining and reweighting pseudo labels
 a. Create a conda virtual environment and activate it.
 
 ```shell
-conda create -n dsn python=3.7 -y
-conda activate dsn
+conda create -n wsod python=3.7 -y
+conda activate wsod
 ```
 b. Install other packets as followings.
 
-- numpy                1.21.5
-- protobuf             3.20.0
-- scikit-image         0.19.3
-- tensorboard          1.15.0
-- tensorflow           1.15.0
-- tensorflow-estimator 1.15.1
-- torch                1.12.1
-- torchvision          0.13.1
-
-The main purpose of installing TensorFlow here is to leverage its interfaces for downloading and loading the MNIST dataset, while the network training and testing are completely implemented using PyTorch. It should also be noted that the versions of TensorFlow and Protobuf need to be configured as mentioned above, otherwise these two packages are prone to conflicting errors.
+- numpy                1.21.6
+- opecv-python         4.7.0.72
+- torch                1.6.0
+- torchvision          0.7.0
+- tensorboard          2.11.2
 
 
 #### 2. Download [BSR_bsds500.tgz](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link) and place it in the main directory.
@@ -50,7 +45,7 @@ The script will automatically create a data directory and generate mnist_data_la
 |   |---mnistm_data.hkl             # MNIST-M images（traning + test + valid）
 ```
 
-#### 4. Start Training and get the [training.log](training.log).
+#### 4. Start Training.
 
 ```shell
 python model.py
@@ -58,6 +53,9 @@ python model.py
 
 **Note that this model is very sensitive to the batch_size, our implementation cannot perform as perfect as the
 original paper, so be careful when you tune parameters for other datasets.** 
+
+#### 5. Start Test.
+
 
 ## Result
 
