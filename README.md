@@ -29,35 +29,36 @@ b. Install other packets as followings.
 - torchvision          0.7.0
 - tensorboard          2.11.2
 
-
-#### 2. Download [BSR_bsds500.tgz](https://drive.google.com/file/d/1gSUgdH1MdPZjGreUa8COnuem5pUTp8iA/view?usp=drive_link) and place it in the main directory.
-
-#### 3. Generate training and testing datasets.
-
-```shell
-python create_mnistm.py
-```
-The script will automatically create a data directory and generate mnist_data_label.hkl, mnist_data.hkl, and mnistm_data.hkl in this directory for training and testing.
-```shell
-|---data
-|   |---mnist_data_label.hkl        # MNIST labels（training + test, one-hot, shared with MNIST-M）
-|   |---mnist_data.hkl              # MNIST images（training + test）
-|   |---mnistm_data.hkl             # MNIST-M images（traning + test + valid）
-```
-
 #### 4. Start Training.
 
+##### 4.1 The first stage training.
 ```shell
-python model.py
+sh train.sh
 ```
 
-**Note that this model is very sensitive to the batch_size, our implementation cannot perform as perfect as the
-original paper, so be careful when you tune parameters for other datasets.** 
+**Note that For VOC2007 and VOC2012, please use vgg16_voc2007_more.yaml and vgg16_voc2012.yaml respectively. Regarding the main configurations of the attention module and label optimization part, please note the CDBLOCK field and SUP field in the configuration files.** 
+
+##### 4.2 The second stage training.
+```shell
+sh train_fast_rcnn.sh
+```
+
+**Note that The configuration files used in this part are vgg16_voc2007_fast.yaml and vgg16_voc2012_fast.yaml. The main codes for dynamic partitioning and weight adjustment are located in lib/core/loss_helper.py, and the specific parameter configurations can refer to the paper.** 
 
 #### 5. Start Test.
 
+##### 5.1 The first stage Test.
 
-## Result
+```shell
+sh test.sh
+```
+##### 5.2 The second stage Test.
 
-We only conduct the experiments from mnist to mnist_m, the target accuracy of our implementation is about **85.8%** (original
-paper ~83.2%).
+```shell
+sh test_fast.sh
+```
+**Note that when using the trainval dataset as the test set, the corloc localization accuracy metric is used by default, and when using the test dataset as the test set, mAP50 is used as the evaluation metric.** 
+
+## Checkpoints
+
+
