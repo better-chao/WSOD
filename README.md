@@ -29,30 +29,30 @@ b. Install other packets as followings.
 - torchvision          0.7.0
 - tensorboard          2.11.2
 
-#### 4. Start Training.
+#### 2. Start Training.
 
-##### 4.1 The first stage training.
+##### 2.1 The first stage training.
 ```shell
 sh train.sh
 ```
 
 **Note that For VOC2007 and VOC2012, please use vgg16_voc2007_more.yaml and vgg16_voc2012.yaml respectively. Regarding the main configurations of the attention module and label optimization part, please note the CDBLOCK field and SUP field in the configuration files.** 
 
-##### 4.2 The second stage training.
+##### 2.2 The second stage training.
 ```shell
 sh train_fast_rcnn.sh
 ```
 
 **Note that The configuration files used in this part are vgg16_voc2007_fast.yaml and vgg16_voc2012_fast.yaml. The main codes for dynamic partitioning and weight adjustment are located in lib/core/loss_helper.py, and the specific parameter configurations can refer to the paper.** 
 
-#### 5. Start Test.
+#### 3. Start Test.
 
-##### 5.1 The first stage Test.
+##### 3.1 The first stage Test.
 
 ```shell
 sh test.sh
 ```
-##### 5.2 The second stage Test.
+##### 3.2 The second stage Test.
 
 ```shell
 sh test_fast.sh
