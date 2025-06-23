@@ -36,14 +36,14 @@ b. Install other packets as followings.
 sh train.sh
 ```
 
-**Note that For VOC2007 and VOC2012, please use vgg16_voc2007_more.yaml and vgg16_voc2012.yaml respectively. Regarding the main configurations of the attention module and label optimization part, please note the CDBLOCK field and SUP field in the configuration files.** 
+Note that For VOC2007 and VOC2012, please use vgg16_voc2007_more.yaml and vgg16_voc2012.yaml respectively. Regarding the main configurations of the attention module and label optimization part, please note the CDBLOCK field and SUP field in the configuration files.
 
 ##### 2.2 The second stage training.
 ```shell
 sh train_fast_rcnn.sh
 ```
 
-**Note that The configuration files used in this part are vgg16_voc2007_fast.yaml and vgg16_voc2012_fast.yaml. The main codes for dynamic partitioning and weight adjustment are located in lib/core/loss_helper.py, and the specific parameter configurations can refer to the paper.** 
+Note that The configuration files used in this part are vgg16_voc2007_fast.yaml and vgg16_voc2012_fast.yaml. The main codes for dynamic partitioning and weight adjustment are located in lib/core/loss_helper.py, and the specific parameter configurations can refer to the paper.
 
 #### 3. Start Test.
 
@@ -57,7 +57,7 @@ sh test.sh
 ```shell
 sh test_fast.sh
 ```
-**Note that when using the trainval dataset as the test set, the corloc localization accuracy metric is used by default, and when using the test dataset as the test set, mAP50 is used as the evaluation metric.** 
+Note that when using the trainval dataset as the test set, the corloc localization accuracy metric is used by default, and when using the test dataset as the test set, mAP50 is used as the evaluation metric.
 
 ## Checkpoints
 
