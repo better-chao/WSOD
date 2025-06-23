@@ -4,7 +4,7 @@ detection</h1>
 </div>
 
 <div align="center">
-  <img src="extra/model.jpg" width="800"/>
+  <img src="extra/model.png" width="800"/>
 </div><br/>
 
 ## Notes
